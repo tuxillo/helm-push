@@ -1,7 +1,9 @@
 #!/bin/bash
 set -e
 
-env
+echo MYDIIRRRR
+ls
+pwd
 
 if [ -z "$CHART_FOLDER" ]; then
   echo "Chart folder is required but not defined."
