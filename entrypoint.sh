@@ -1,9 +1,6 @@
 #!/bin/bash
 set -e
 
-echo MYDIIRRRR
-ls
-pwd
 
 if [ -z "$CHART_FOLDER" ]; then
   echo "Chart folder is required but not defined."
@@ -39,6 +36,9 @@ if [ "$USE_OCI_REGISTRY" == "TRUE" ] || [ "$USE_OCI_REGISTRY" == "true" ]; then
   echo "OCI SPECIFIED, USING HELM OCI FEATURES"
   REGISTRY=$(echo "${REGISTRY_URL}" | awk -F[/:] '{print $4}') # Get registry host from url
   echo "${REGISTRY_ACCESS_TOKEN}" | helm registry login -u ${REGISTRY_USERNAME} --password-stdin ${REGISTRY} # Authenticate registry
+  echo MYDIIRRRR
+  ls -l .
+  pwd
   echo "Packaging chart '$CHART_FOLDER'"
   PKG_RESPONSE=$(helm package $CHART_FOLDER $UPDATE_DEPENDENCIES) # package chart
   echo "$PKG_RESPONSE"
